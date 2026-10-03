@@ -170,12 +170,19 @@ def index():
         bio = request.form.get("bio", "")
         quote = request.form.get("quote", "")
 
-        # === THIS is the vulnerable part ===
-        # We inject the raw `name` into the template string
-        vulnerable_template = TEMPLATE.replace("{{ name }}", name)
+        # Build a new template where only the greeting is vulnerable
+        # We keep the rest of the template safe
+        vulnerable_part = f"<h2>Hello {name}!</h2>"
+
+        # Replace only the greeting line
+        final_template = TEMPLATE.replace(
+            "<h2>Hello {{ name }}!</h2>",
+            vulnerable_part
+        )
 
         return render_template_string(
-            vulnerable_template,
+            final_template,
+            name=name,               # still needed for the {% if %} and the input value
             display_name=display_name,
             bio=bio,
             quote=quote
