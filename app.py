@@ -24,6 +24,7 @@ TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
     <title>Personal Card Generator</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -127,11 +128,11 @@ TEMPLATE = """
 </head>
 <body>
     <div class="container">
-        <h1>Personal Card Generator</h1>
+        <h1>Welcome to SecuriNets ISI</h1>
         <p class="subtitle">Create your custom profile card</p>
 
         <form method="POST">
-            <label>Name *</label>
+            <label>Name </label>
             <input type="text" name="name" placeholder="Your name" required value="{{ name or '' }}">
 
             <label>Display Name</label>
@@ -155,7 +156,7 @@ TEMPLATE = """
         </div>
         {% endif %}
 
-        <p class="hint">Only one field is special...</p>
+        <p class="hint">SecuriNets ISI freindly CTF</p>
     </div>
 </body>
 </html>
