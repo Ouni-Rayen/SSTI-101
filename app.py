@@ -170,10 +170,12 @@ def index():
         bio = request.form.get("bio", "")
         quote = request.form.get("quote", "")
 
-        # Only the 'name' field is passed unescaped → SSTI
+        # === THIS is the vulnerable part ===
+        # We inject the raw `name` into the template string
+        vulnerable_template = TEMPLATE.replace("{{ name }}", name)
+
         return render_template_string(
-            TEMPLATE,
-            name=name,
+            vulnerable_template,
             display_name=display_name,
             bio=bio,
             quote=quote
